@@ -1,0 +1,39 @@
+/* Barra lateral */
+.sidebar {
+    position: fixed;
+    left: -200px; /* Inicialmente fuera de la vista */
+    top: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #333;
+    overflow-x: hidden;
+    transition: left 0.3s ease; /* Suaviza la entrada */
+    z-index: 1000;
+}
+
+.sidebar.open {
+    left: 0; /* Mueve la barra completamente dentro de la vista */
+}
+
+.sidebar a {
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sidebar a:hover {
+    background-color: #575757;
+}
+
+/* Área invisible para activar la barra */
+.trigger-area {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 10px; /* Área de activación pequeña en el borde izquierdo */
+    height: 100%;
+    z-index: 999;
+    background-color: transparent; /* Invisible */
+}

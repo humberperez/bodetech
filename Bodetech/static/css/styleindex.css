@@ -1,0 +1,241 @@
+body {
+    background: linear-gradient(to bottom, #8B0000, #7A0000, #5F0000, #3A0000, #1A0000, #000);
+    background-size: 100vh;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para destacar el texto */
+}
+h3{
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+    text-shadow: 2px 2px 4px rgb(0, 0, 0,0.2);
+}
+
+hr {
+    margin-bottom: 50px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sector {
+    margin-bottom: 20px;
+    padding: 16px; /* Aumenta el padding para un aspecto más espacioso */
+    border-color: #ff0000;
+    background-color: rgb(0, 0, 0); /* Color de fondo más claro */
+    border-radius: 8px; /* Borde más redondeado */
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23); /* Sombra de Material UI */
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Suavizado en cambios de sombra */
+}
+
+.sector:hover {
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2), 0px 6px 12px rgba(0, 0, 0, 0.26); /* Sombra más pronunciada en hover */
+    transform: translateY(-8px); /* Levantamiento suave al pasar el cursor */
+}
+
+.sector:active {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23); /* Restablece la sombra original al hacer clic */
+    transform: translateY(0); /* Restaura la posición al hacer clic */
+}
+
+
+.sector h2 {
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.barriles {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+}
+
+.barriles.activo {
+    max-height: 1000px; /* Ajusta según el contenido, esto es un valor estimado */
+}
+
+.barril {
+    display: flex;
+    flex-direction: column;  /* Asegura que el nombre y los datos estén en columna */
+    justify-content: flex-start;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    background-color: #f8f9fa;
+    border: 2px solid #ccc;
+    margin: 5px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #333;
+    padding: 5px;
+    box-sizing: border-box;  /* Para que el padding no afecte el tamaño total */
+    position: relative; /* Esto permitirá posicionar los datos a la derecha */
+}
+
+.barril .nombre-barril {
+    margin-bottom: 10px;  /* Añadir un espacio entre el nombre y los datos */
+}
+
+.barril:hover {
+    background-color: red; /* Color de fondo al pasar el mouse */
+    color: white; /* Cambia el color del texto al pasar el mouse */
+    cursor: pointer; /* Cambia el cursor cuando pases por encima */
+}
+
+.datos {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;  /* Mueve los datos a la derecha del barril */
+    margin-left: 10px;  /* Espacio entre el barril y los datos */
+    padding: 10px;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    background-color: white;
+    color: #000;
+    min-width: 120px;  /* Ancho mínimo para el contenedor de datos */
+    box-sizing: border-box;
+    z-index: 1;  /* Asegura que los datos aparezcan sobre otros elementos */
+}
+
+.datos.active {
+    display: block;
+}
+
+
+
+
+
+
+
+/* Estilo para las tareas */
+.tareas {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); /* Mostrar las tareas en una sola columna */
+    gap: 10px;
+    margin-top: 10px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out;
+    color: white; /* Asegura que todo el texto dentro de tareas sea blanco */
+}
+
+.tareas.activo {
+    max-height: 1000px;
+}
+
+.tarea {
+    display: flex;
+    justify-content: space-between;  /* Nombre y estado de tarea a los extremos */
+    align-items: center;
+    background-color: #f8f9fa;
+    border: 2px solid #ccc;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: white; /* Texto blanco dentro de cada tarea */
+}
+
+.tarea:hover {
+    background-color: red; /* Color de fondo al pasar el mouse */
+    color: white;  /* Asegura que el texto se mantenga blanco al pasar el mouse */
+    cursor: pointer;
+}
+
+
+/* Ocultar el formulario de agregar tarea por defecto */
+.agregar-tarea {
+    display: none; /* Inicialmente oculto */
+    background-color: #222;
+    border: 2px solid #000000;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16), 0px 3px 6px rgba(0, 0, 0, 0.23);
+    color: white;
+}
+
+/* Mostrar el formulario cuando tenga la clase activa */
+.agregar-tarea.activo {
+    display: block; /* Se muestra cuando tiene la clase activa */
+}
+
+
+/* Para los elementos del formulario */
+.agregar-tarea input, .agregar-tarea textarea {
+    padding: 2px; /* Relleno más pequeño */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 100%;
+    color: white; /* Aseguramos que el texto dentro de input/textarea sea blanco */
+    background-color: #333; /* Fondo oscuro para mejor contraste */
+    height: 35px; /* Reduce la altura de los campos */
+}
+
+/* Si quieres que los textarea también tengan un tamaño específico */
+.agregar-tarea textarea {
+    height: 80px; /* Ajusta la altura para textarea */
+}
+
+.agregar-tarea button {
+    background-color: #ff0000;
+    color: white; /* Letra blanca en el botón */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.agregar-tarea button:hover {
+    background-color: #cc0000;
+}
+
+
+
+
+
+/* Estilo para el div boton_agregartarea */
+.boton_agregartarea {
+    background-color: #444;  /* Fondo oscuro */
+    color: white;  /* Texto blanco */
+    padding: 10px 20px;  /* Espaciado interior */
+    border: 2px solid #000;  /* Borde negro */
+    border-radius: 5px;  /* Bordes redondeados */
+    cursor: pointer;  /* Cambia el cursor a mano cuando pasa sobre el botón */
+    text-align: center;  /* Alinea el texto al centro */
+    transition: background-color 0.3s ease;  /* Transición suave para el cambio de color */
+    font-size: 18px;  /* Tamaño de texto */
+    display: inline-block;  /* Para que se comporte como un bloque en línea */
+    margin: 0;  /* Elimina márgenes por defecto */
+    width: auto;  /* Ajusta el ancho al contenido */
+}
+
+.boton_agregartarea:hover {
+    background-color: #666;  /* Cambio de fondo al pasar el ratón */
+}
+

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Usuario</title>
+    <link rel="icon" href="https://i.pinimg.com/736x/bb/5a/a9/bb5aa9de546182c556e3089d55a07926.jpg">
+    <link rel="stylesheet" href="/static/css/styleindex.css">
+    <link rel="stylesheet" href="/static/css/stylebar.css">
+</head>
+<body>
+     <!-- Menú Desplegable -->
+     <div class="trigger-area"></div> <!-- Área para activar la barra -->
+     <div class="sidebar" id="sidebar">
+         <a href="{{ url_for('cargar_usuario') }}">Cargar Nuevo Usuario</a>
+         <a href="{{ url_for('inicio') }}">Estado Barriles</a> 
+         <a href="{{ url_for('logout') }}">Cerrar Sesión</a>
+     </div>
+
+    <div class="container">
+        <h1>Editar Usuario</h1>
+        <hr>
+        <form method="POST" action="{{ url_for('editar_usuario', correo=usuario[2]) }}">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" value="{{ usuario[0] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido:</label>
+                <input type="text" id="apellido" name="apellido" value="{{ usuario[1] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" name="correo" value="{{ usuario[2] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="is_admin">¿Es Administrador?</label>
+                <select id="is_admin" name="is_admin">
+                    <option value="True" {% if usuario[3] == 1 %}selected{% endif %}>Sí</option>
+                    <option value="False" {% if usuario[3] == 0 %}selected{% endif %}>No</option>
+                </select>
+            </div>
+            <button type="submit">Guardar Cambios</button>
+        </form>
+
+        <br>
+        <a href="{{ url_for('usuarios') }}">Volver a la lista de usuarios</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/scriptbar.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
